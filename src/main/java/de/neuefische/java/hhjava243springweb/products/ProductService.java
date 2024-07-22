@@ -16,10 +16,12 @@ public class ProductService {
         return productRepo.findAll();
     }
 
-    public Product saveProduct(Product product) {
-        Product productToSave = product
-                .withId(UUID.randomUUID().toString())
-                .withPrice(5);
+    public Product saveProduct(NewProductDto product) {
+        Product productToSave = new Product(
+                UUID.randomUUID().toString(),
+                product.title(),
+                product.description(),
+                5);
 
         return productRepo.save(productToSave);
     }
